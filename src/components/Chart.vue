@@ -1,6 +1,6 @@
 <template>
     <div class="small">
-        <LineChart :chart-data="dataCollection" v-if="dataCollection"/>
+        <LineChart :chart-data="data" v-if="data.datasets"/>
         <Spinner v-else/>
     </div>
 </template>
@@ -8,43 +8,24 @@
 <script>
     import LineChart from './LineChart'
     import Spinner from './Spinner/Spinner'
-    import { mapActions, mapGetters } from 'vuex'
+    import { mapActions, mapState } from 'vuex'
+
     export default {
         components: {
             LineChart,
             Spinner
         },
-          computed: {
-            ...mapGetters([
-                 'getData',
-            ])
-        },
-        data() {
-            return {
-                dataCollection: null,
-            }
-        },
+        computed: mapState({
+            data: 'dummyData'
+        }),
         mounted: function () {
             this.$store.dispatch('fetchDataChart')
-                .then(res => {
-                    console.log(res)
-                })
         },
         methods: {
             ...mapActions([
                 'fetchDataChart'
             ]),
-            fillData() {
-
-            }
         },
-        watch: {
-            '$store.state.dummyData'(value) {
-                if(value) {
-                    this.dataCollection = value;
-                }
-            },
-        }
     }
 </script>
 

@@ -30,14 +30,3 @@ export default new Vuex.Store({
     },
   },
 });
-
-// //типо получаем данные по api с сервера
-// export function fetchDataChart() {
-//     return async () => {
-//         dispatch(isLoadingItems(true));
-//         await setTimeout(() => {
-//             dispatch(isLoadingItems(false));
-//             dispatch(fetchItemsSuccess(data));
-//         }, 2500);
-//     };
-// }

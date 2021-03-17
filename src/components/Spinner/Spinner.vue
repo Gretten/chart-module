@@ -4,7 +4,7 @@
         <div></div>
         <div></div>
     </div>
-    <!-- <p>{{ errorData.errorName }}</p> -->
+    <p>Loading...</p>
 </div>
     
 </template>
@@ -12,12 +12,6 @@
 <script>
     export default {
         name: 'Spinner',
-        // props: ['error'],
-        // data() {
-        //     return {
-        //         errorData: null,
-        //     }
-        // },
     }
 </script>
 
@@ -44,7 +38,7 @@
 
     .lds-ripple div {
         position: absolute;
-        border: 4px solid rgb(255, 40, 40);
+        border: 4px solid rgb(216, 24, 24);
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

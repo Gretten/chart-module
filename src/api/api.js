@@ -28,7 +28,9 @@ const thirdChartData = {
     data: [20, 16, 10, 5, 4, 5, 7, 8, 9, 9, 9],
 };
 
-export const data = {
+const data = {
     labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
     datasets: [firstChartData, secondChartData, thirdChartData]
 };
+
+export default data;

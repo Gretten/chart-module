@@ -1,21 +1,31 @@
 <template>
     <div class="small">
-        <line-chart 
-            :chart-data="dataCollection"
-        ></line-chart>
+        {{
+            dataCollection 
+        }}
         <button
             @click="fillData()"
         >
             Randomize
         </button>
+        <LineChart :chart-data="dataCollection" />
+        <Spinner />
     </div>
 </template>
 
 <script>
     import LineChart from './LineChart'
+    import Spinner from './Spinner/Spinner'
+    import { mapActions, mapGetters } from 'vuex'
     export default {
         components: {
             LineChart,
+            Spinner
+        },
+          computed: {
+            ...mapGetters([
+                 'getData',
+            ])
         },
         data() {
             return {
@@ -23,40 +33,14 @@
             }
         },
         mounted: function () {
-            this.fillData()
+            this.$store.dispatch('fetchDataChart')
         },
         methods: {
+            ...mapActions([
+                'fetchDataChart'
+            ]),
             fillData() {
-                this.dataCollection = {
-                    labels: ['hello', 'world', 'no hello'],
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: 'transparent',
-                            data: [this.getRandomInt(), this.getRandomInt(),this.getRandomInt()],
-                            borderColor: 'red',
-                            borderWidth: 2,
-                        },
-                        {
-                            label: 'Data Two',
-                            backgroundColor: 'transparent',
-                            data: [this.getRandomInt(), this.getRandomInt(),this.getRandomInt()],
-                            borderColor: 'blue',
-                            borderWidth: 2,
-                        },
-                                                {
-                            label: 'Data Three',
-                            backgroundColor: 'transparent',
-                            data: [this.getRandomInt(), this.getRandomInt(),this.getRandomInt()],
-                            borderColor: 'yellow',
-                            borderWidth: 2,
-                        },
-                    ]
-                }
-            },
 
-            getRandomInt() {
-                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
             }
         }
     }

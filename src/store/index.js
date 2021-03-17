@@ -13,20 +13,19 @@ export default new Vuex.Store({
   },
   mutations: {
     setData(state, dummyData) {
-        state.images = dummyData;
+        state.dummyData = dummyData;
       },
     setLoadngStatus(state, isLoading) {
-        state.images = isLoading;
+        state.isLoading = isLoading;
     },
   },
   actions: {
     fetchDataChart({ commit }) {
-        return async () => {
-            commit('setLoadngStatus', true),
-            await setTimeout(() => {
-                commit('setData', data)
-            }, 2500)
-        }
+        commit('setLoadngStatus', true),
+        setTimeout(() => {
+            commit('setData', data)
+            commit('setLoadngStatus', false)
+        }, 2500)
     },
   },
 });

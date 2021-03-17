@@ -33,4 +33,12 @@ const data = {
     datasets: [firstChartData, secondChartData, thirdChartData]
 };
 
-export default data;
+const delayingApi = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {  
+            resolve(data)
+        }, 2500)
+    })
+}
+
+export default delayingApi;

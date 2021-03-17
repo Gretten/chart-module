@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
-import data from '../api/api'
+import delayingApi from '../api/api'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,17 +15,14 @@ export default new Vuex.Store({
     setData(state, dummyData) {
         state.dummyData = dummyData;
       },
-    setLoadngStatus(state, isLoading) {
-        state.isLoading = isLoading;
-    },
   },
   actions: {
     fetchDataChart({ commit }) {
-        commit('setLoadngStatus', true),
-        setTimeout(() => {
-            commit('setData', data)
-            commit('setLoadngStatus', false)
-        }, 2500)
+        delayingApi()
+            .then(res => {
+                commit('setData', res)
+            })
     },
   },
 });
+

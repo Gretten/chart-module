@@ -1,15 +1,7 @@
 <template>
     <div class="small">
-        {{
-            dataCollection 
-        }}
-        <button
-            @click="fillData()"
-        >
-            Randomize
-        </button>
-        <LineChart :chart-data="dataCollection" />
-        <Spinner />
+        <LineChart :chart-data="dataCollection" v-if="dataCollection"/>
+        <Spinner v-else/>
     </div>
 </template>
 
@@ -29,11 +21,14 @@
         },
         data() {
             return {
-                dataCollection: {}
+                dataCollection: null,
             }
         },
         mounted: function () {
             this.$store.dispatch('fetchDataChart')
+                .then(res => {
+                    console.log(res)
+                })
         },
         methods: {
             ...mapActions([
@@ -42,6 +37,13 @@
             fillData() {
 
             }
+        },
+        watch: {
+            '$store.state.dummyData'(value) {
+                if(value) {
+                    this.dataCollection = value;
+                }
+            },
         }
     }
 </script>
